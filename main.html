@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Alexandru Tindeche's interactive personal archive.">
+    <title>ALEX-01 // Personal Archive</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+      <main class="terminal" id="terminal">
+        <pre class="terminal-frame" id="terminal-frame" aria-hidden="true"></pre>
+
+        <section class="terminal-content" aria-labelledby="avatar-name">
+        <figure class="avatar">
+            <pre class="avatar-art" role="img" aria-label="ASCII portrait of the ALEX-01 avatar">
+       _______
+     _/       \_
+    / |   *   | \
+   /  |__   __|  \
+  |_/(( <span class="eye">o</span>| |<span class="eye">o</span> ))\_|
+  |      | |      |
+  |\     |_|     /|
+  | \           / |
+   \| /  ___  \ |/
+    \ | / _ \ | /
+     \_________/
+      _|_____|_
+ ____|_________|____
+/                   \</pre>
+            <figcaption id="avatar-name">ALEX-01</figcaption>
+        </figure>
+
+        <p class="greeting">
+            Hello, visitor. We can interact through the buttons below<span class="cursor" aria-hidden="true">_</span>
+        </p>
+            <div class="command-interface">
+                <p class="command-display" id="command-display">
+                    SELECT A COMMAND
+                </p>
+
+                <div class="word-buttons" aria-label="Available command words">
+                    <button type="button" data-word="WHO">WHO</button>
+                    <button type="button" data-word="ARE">ARE</button>
+                    <button type="button" data-word="YOU">YOU</button>
+                    <button type="button" data-word="SHOW">SHOW</button>
+                    <button type="button" data-word="ME">ME</button>
+                    <button type="button" data-word="YOUR">YOUR</button>
+                    <button type="button" data-word="WORK">WORK</button>
+                    <button type="button" data-word="CONTACT">CONTACT</button>
+                    <button type="button" data-word="CV">CV</button>
+                    <button type="button" data-word="LET">LET</button>
+                    <button type="button" data-word="TALK">TALK</button>
+                    <button type="button" data-word="TO">TO</button>
+                    <button type="button" data-word="GO">GO</button>
+                    <button type="button" data-word="DO">DO</button>
+                    <button type="button" data-word="IS">IS</button>
+                    <button type="button" data-word="ALIVE">ALIVE</button>
+                    <button type="button" data-word="REMEMBER">REMEMBER</button>
+                    <button type="button" data-word="ALEX">ALEX</button>
+                    <button type="button" data-word="HELP">HELP</button>
+                </div>
+
+                <div class="command-controls">
+                    <button type="button" id="clear-command">CLEAR</button>
+                    <button type="button" id="send-command">TRANSMIT</button>
+                </div>
+
+                <p class="bot-response" id="bot-response" aria-live="polite">
+                    Awaiting input...
+                </p>
+                <pre class="cv-content" id="cv-content" aria-hidden="true"></pre>
+
+                <div class="cv-choice" id="cv-choice" aria-hidden="true">
+                    <button type="button" id="cv-here" disabled>HERE</button>
+                    <button type="button" id="cv-document" disabled>DOCUMENT</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+:root {
+  color-scheme: dark;
+  --ink: #8fffd7;
+  --muted-ink: #5cae93;
+  --background: #050c0b;
+  --frame-size: clamp(0.625rem, 1.25vw, 0.875rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(44, 126, 103, 0.16), transparent 38rem),
+    #030807;
+  color: var(--ink);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.terminal {
+  position: relative;
+  width: calc(100vw - 2rem);
+  height: calc(100svh - 2rem);
+  margin: 1rem;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(143, 255, 215, 0.025) 4px
+    ),
+    linear-gradient(145deg, rgba(11, 27, 24, 0.98), rgba(4, 12, 10, 0.98));
+  box-shadow: inset 0 0 7rem rgba(0, 0, 0, 0.65);
+}
+
+.terminal-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted-ink);
+  font: var(--frame-size)/1 "Courier New", Courier, monospace;
+  white-space: pre;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: 0 0 0.65rem rgba(143, 255, 215, 0.28);
+}
+
+.terminal-content {
+  position: absolute;
+  z-index: 1;
+
+  top: calc(
+    var(--header-rows, 1) * var(--frame-size) + 1rem
+  );
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+
+  height: auto;
+  min-height: 0;
+  padding: 1rem 0.5rem;
+
+  display: grid;
+  align-content: safe center;
+  justify-content: center;
+  justify-items: center;
+  gap: clamp(1.5rem, 5vh, 3rem);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--muted-ink) transparent;
+  text-align: center;
+}
+
+.avatar {
+  margin: 0;
+}
+
+.avatar-art {
+  display: inline-block;
+  margin: 0;
+  color: var(--ink);
+  font: clamp(0.65rem, 1.5vw, 1rem)/1.08 "Courier New", Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  text-shadow:
+    0 0 0.35rem rgba(143, 255, 215, 0.8),
+    0 0 1.5rem rgba(143, 255, 215, 0.22);
+  animation: idle 4s ease-in-out infinite;
+}
+
+.avatar figcaption {
+  margin-top: 1.25rem;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+}
+
+.greeting {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--muted-ink);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  line-height: 1.6;
+}
+
+.cursor {
+  color: var(--ink);
+  animation: blink 1s steps(1) infinite;
+}
+
+.frame-ruler {
+  position: fixed;
+  visibility: hidden;
+  inset: auto;
+  margin: 0;
+  padding: 0;
+  font: var(--frame-size)/1 "Courier New", Courier, monospace;
+  white-space: pre;
+}
+
+.eye {
+    display: inline-block;
+    color: white;
+    transition: transform 60ms linear;
+    will-change: transform;
+}
+.command-interface {
+  width: min(100%, 42rem);
+}
+
+.command-display,
+.bot-response {
+  min-height: 2.5rem;
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--muted-ink);
+  color: var(--ink);
+  text-align: left;
+}
+
+.word-buttons,
+.command-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.command-controls {
+  margin-top: 1rem;
+}
+
+.word-buttons button,
+.command-controls button {
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--muted-ink);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.word-buttons button:hover,
+.word-buttons button:focus-visible,
+.command-controls button:hover,
+.command-controls button:focus-visible {
+  background: var(--ink);
+  color: var(--background);
+  box-shadow: 0 0 1rem rgba(143, 255, 215, 0.4);
+  outline: none;
+}
+
+.word-buttons button:active,
+.command-controls button:active {
+  transform: translateY(2px);
+}
+
+.bot-response {
+  margin-top: 1rem;
+  color: var(--muted-ink);
+  white-space: pre-line;
+}
+
+.cv-content {
+  width: min(100%, 42rem);
+  margin: 0;
+  color: var(--muted-ink);
+  font: inherit;
+  line-height: 1.5;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.cv-content:empty {
+  display: none;
+}
+
+.cv-choice {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.75rem);
+  pointer-events: none;
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease,
+    max-height 300ms ease,
+    visibility 0s linear 300ms;
+}
+
+.cv-choice.is-visible {
+  max-height: 4rem;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+
+  transition-delay: 0s;
+}
+
+.cv-choice button {
+  opacity: 0;
+  transform: translateY(-0.4rem);
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease;
+}
+
+.cv-choice.is-visible button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cv-choice.is-visible button:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.cv-choice button {
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--muted-ink);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.cv-choice button:hover,
+.cv-choice button:focus-visible {
+  background: var(--ink);
+  color: var(--background);
+  box-shadow: 0 0 1rem rgba(143, 255, 215, 0.4);
+  outline: none;
+}
+
+.cv-choice button:active {
+  transform: translateY(2px);
+}
+
+@keyframes idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.35rem); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 36rem) {
+  :root {
+    --frame-size: clamp(0.5rem, 2.45vw, 0.75rem);
+  }
+
+  .terminal {
+    width: 100vw;
+    height: 100svh;
+    margin: 0;
+  }
+
+  .terminal-content {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-art,
+  .cursor {
+    animation: none;
+  }
+}
