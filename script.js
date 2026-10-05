@@ -151,8 +151,8 @@ const responses = {
     "WHO IS ME":
     "You are a visitor. Your identity is not recognized.",
 
-    "ARE YOU ALEX",
-    "No, I am not Alex. Alex is my master, but I can help you find out more about his work."
+    "ARE YOU ALEX":
+    "No, I am not Alex. Alex is my master, but I can help you find out more about his work.",
 };
 
 const responseSequences = {
